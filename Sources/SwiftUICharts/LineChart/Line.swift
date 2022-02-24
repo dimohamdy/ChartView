@@ -23,6 +23,7 @@ public struct Line: View {
     public var index: Int = 0
     let padding: CGFloat = 30
     public var curvedLines: Bool = true
+    private let font: Font
 
     init(
         data: ChartData,
@@ -35,7 +36,8 @@ public struct Line: View {
         showBackground: Binding<Bool>,
         gradient: GradientColor = GradientColor(start: Colors.GradientPurple, end: Colors.GradientNeonBlue),
         index: Int = 0,
-        curvedLines: Bool = true
+        curvedLines: Bool = true,
+        font: Font = Font.system(size: 12, weight: .light, design: .default)
     ) {
         self.data = data
         _currentValue = currentValue
@@ -48,6 +50,7 @@ public struct Line: View {
         self.gradient = gradient
         self.index = index
         self.curvedLines = curvedLines
+        self.font = font
     }
 
     var stepWidth: CGFloat {
@@ -95,7 +98,7 @@ public struct Line: View {
             if self.showFull, self.showBackground {
                 self.closedPath
                     .fill(LinearGradient(
-                        gradient: Gradient(colors: [gradient.start, colorScheme == .dark ? Color.charcoal : Color.white]),
+                        gradient: Gradient(colors: [gradient.start, colorScheme == .dark ? Colors.charcoal : Color.white]),
                         startPoint: .bottom,
                         endPoint: .top
                     ))
@@ -118,7 +121,7 @@ public struct Line: View {
                 }
             if self.showIndicator {
                 Text(currentValue)
-                    .font(.SofiaPro.light(size: 12.0))
+                    .font(font)
                     .position(CGPoint(x: self.getClosestPointOnPath(touchLocation: self.touchLocation).x, y: 0))
 
                 IndicatorPoint()

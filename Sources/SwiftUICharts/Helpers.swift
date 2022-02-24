@@ -28,6 +28,7 @@ public enum Colors {
     public static let GradientLowerBlue: Color = .init(hexString: "#F1F9FF")
     public static let DarkPurple: Color = .init(hexString: "#1B205E")
     public static let BorderBlue: Color = .init(hexString: "#4EBCFF")
+    public static let charcoal: Color = .init(hexString: "#121212")
 }
 
 public struct GradientColor {
@@ -64,7 +65,7 @@ public enum GradientColors {
 
 public enum Styles {
     public static let lineChartStyleOneDark = ChartStyle(
-        backgroundColor: Color.charcoal,
+        backgroundColor: Colors.charcoal,
         accentColor: Colors.OrangeStart,
         secondGradientColor: Colors.OrangeEnd,
         textColor: Color.white,
