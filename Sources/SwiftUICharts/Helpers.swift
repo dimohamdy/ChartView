@@ -64,7 +64,7 @@ public enum GradientColors {
 
 public enum Styles {
     public static let lineChartStyleOneDark = ChartStyle(
-        backgroundColor: Color.charcoal,
+        backgroundColor: Color.white,
         accentColor: Colors.OrangeStart,
         secondGradientColor: Colors.OrangeEnd,
         textColor: Color.white,

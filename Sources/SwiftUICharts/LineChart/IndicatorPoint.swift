@@ -9,14 +9,18 @@
 import SwiftUI
 
 struct IndicatorPoint: View {
-    @Environment(\.colorScheme) var colorScheme
+    private let middleCircleColor: Color
+
+    init(middleCircleColor: Color) {
+        self.middleCircleColor = middleCircleColor
+    }
 
     var body: some View {
         ZStack(alignment: .center) {
             Circle()
                 .fill(Colors.IndicatorKnob)
             Circle()
-                .stroke(colorScheme == .dark ? Color.charcoal : Color.white, style: StrokeStyle(lineWidth: 3))
+                .stroke(middleCircleColor, style: StrokeStyle(lineWidth: 3))
                 .frame(width: 13, height: 13)
 
             Circle()

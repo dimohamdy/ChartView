@@ -20,11 +20,13 @@ public struct Line: View {
     @State private var showFull: Bool = false
     @Binding public var showBackground: Bool
     public var gradient: GradientColor = .init(start: Colors.GradientPurple, end: Colors.GradientNeonBlue)
+    public var gradientWhenFullActive: GradientColor = .init(start: Colors.GradientPurple, end: Colors.GradientNeonBlue)
+    public var font: Font = .callout
     public var index: Int = 0
     let padding: CGFloat = 30
     public var curvedLines: Bool = true
 
-    init(
+    public init(
         data: ChartData,
         currentValue: Binding<String>,
         frame: Binding<CGRect>,
@@ -34,6 +36,8 @@ public struct Line: View {
         maxDataValue: Binding<Double?>,
         showBackground: Binding<Bool>,
         gradient: GradientColor = GradientColor(start: Colors.GradientPurple, end: Colors.GradientNeonBlue),
+        gradientWhenFullActive: GradientColor = GradientColor(start: Colors.GradientPurple, end: Colors.GradientNeonBlue),
+        font: Font = .callout,
         index: Int = 0,
         curvedLines: Bool = true
     ) {
@@ -46,6 +50,8 @@ public struct Line: View {
         _maxDataValue = maxDataValue
         _showBackground = showBackground
         self.gradient = gradient
+        self.gradientWhenFullActive = gradientWhenFullActive
+        self.font = font
         self.index = index
         self.curvedLines = curvedLines
     }
@@ -95,7 +101,7 @@ public struct Line: View {
             if self.showFull, self.showBackground {
                 self.closedPath
                     .fill(LinearGradient(
-                        gradient: Gradient(colors: [gradient.start, colorScheme == .dark ? Color.charcoal : Color.white]),
+                        gradient: gradientWhenFullActive,
                         startPoint: .bottom,
                         endPoint: .top
                     ))
@@ -118,7 +124,7 @@ public struct Line: View {
                 }
             if self.showIndicator {
                 Text(currentValue)
-                    .font(.SofiaPro.light(size: 12.0))
+                    .font(font)
                     .position(CGPoint(x: self.getClosestPointOnPath(touchLocation: self.touchLocation).x, y: 0))
 
                 IndicatorPoint()
