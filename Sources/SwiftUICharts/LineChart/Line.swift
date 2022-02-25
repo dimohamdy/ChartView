@@ -25,7 +25,7 @@ public struct Line: View {
     public var curvedLines: Bool = true
     private let font: Font
 
-    init(
+    public init(
         data: ChartData,
         currentValue: Binding<String>,
         frame: Binding<CGRect>,
