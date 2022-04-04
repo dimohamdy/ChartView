@@ -39,7 +39,7 @@ public struct LineView: View {
         self.style = style
         self.valueSpecifier = valueSpecifier!
         self.legendSpecifier = legendSpecifier!
-        darkModeStyle = style.darkModeStyle != nil ? style.darkModeStyle! : Styles.lineViewDarkMode
+        darkModeStyle = style.darkModeStyle ?? Styles.lineViewDarkMode
     }
 
     public var body: some View {
@@ -62,8 +62,8 @@ public struct LineView: View {
                         Rectangle()
                             .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.backgroundColor : self.style.backgroundColor)
                         if self.showLegend {
-                            Legend(data: self.data,
-                                   frame: .constant(reader.frame(in: .local)), hideHorizontalLines: self.$hideHorizontalLines, specifier: legendSpecifier)
+                            InternLegend(data: self.data,
+                                         frame: .constant(reader.frame(in: .local)), hideHorizontalLines: self.$hideHorizontalLines, specifier: legendSpecifier)
                                 .transition(.opacity)
                             // .animation(Animation.easeOut(duration: 1).delay(1))
                         }

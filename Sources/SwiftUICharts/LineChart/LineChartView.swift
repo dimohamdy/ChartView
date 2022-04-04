@@ -46,7 +46,7 @@ public struct LineChartView: View {
         self.title = title
         self.legend = legend
         self.style = style
-        darkModeStyle = style.darkModeStyle != nil ? style.darkModeStyle! : Styles.lineViewDarkMode
+        darkModeStyle = style.darkModeStyle ?? Styles.lineViewDarkMode
         formSize = form!
         frame = CGSize(width: formSize.width, height: formSize.height / 2)
         self.dropShadow = dropShadow!
