@@ -39,7 +39,7 @@ public struct LineView: View {
         self.style = style
         self.valueSpecifier = valueSpecifier!
         self.legendSpecifier = legendSpecifier!
-        darkModeStyle = style.darkModeStyle != nil ? style.darkModeStyle! : Styles.lineViewDarkMode
+        darkModeStyle = style.darkModeStyle ?? Styles.lineViewDarkMode
     }
 
     public var body: some View {
